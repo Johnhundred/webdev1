@@ -1,12 +1,11 @@
-$(document).on("click", ".navbar-brand", function(){
-    // http://t4t5.github.io/sweetalert/
+/*$(document).on("click", ".navbar-brand", function(){
     swal({
         title: "Error!",
         text: "Here's my error message!",
         type: "error",
         confirmButtonText: "Cool"
     });
-});
+});*/
 
 $(document).on("click", "#linkCompanies", function(){
     $("#wdw-companies").show();
@@ -57,6 +56,7 @@ for( var i = 0; i < aUsers.length; i++ ){
     // $("#lblCompanies").append( "<div>" + aCompanies[i].name + "</div>"   );
     $("#lblUsers").append('<tr><th scope="row">'+aUsers[i].id+'</th><td>'+aUsers[i].name+'</td><td>'+aUsers[i].lastName+'</td></tr>');
 }
+
 // Sweetalert - swal
 var iId = 0;
 var sName = "";
@@ -70,13 +70,13 @@ function showEditableData(oElement){
         //console.log($(this));
         aClickedData.push($(this));
         //console.log($(this).text());
-        iId = Number($(this).children("th:nth-child(1)").text());
+        //iId = Number($(this).children("th:nth-child(1)").text());
         sName = $(this).children("td:nth-child(2)").text();
         iPrice = Number($(this).children("td:nth-child(3)").text());
         //console.log("ID: "+iId+". Name: "+sName+". Price: "+iPrice+".");
     });
 
-    $("#modalCompanies .modal-body #lblEditableCompaniesModal").append('<tr><th scope="row"><input type="text" value="'+iId+'"></th><td><input type="text" value="'+sName+'"></td><td><input type="text" value="'+iPrice+'"></td></tr>');
+    $("#modalCompanies .modal-body #lblEditableCompaniesModal").append('<tr><td><input type="text" value="'+sName+'"></td><td><input type="text" value="'+iPrice+'"></td></tr>');
 }
 
 function submitEditableData(){
@@ -88,29 +88,17 @@ function submitEditableData(){
                 iPrice = Number($(this).children("td:nth-child(3)").children().val());
                 //console.log("ID: "+sId+". Name: "+sName+". Price: "+sPrice+".");
                 aCompanies[i].name = sName;
-                aCompanies[i].id = iId;
+                //aCompanies[i].id = iId;
                 aCompanies[i].price = iPrice
             });
         }
     }
-    /*$("#modalCompanies .modal-body #lblEditableCompaniesModal tr").each(function(){
-     var iId = Number($(this).children().children().val());
-     var sName = $(this).children("td:nth-child(2)").children().val();
-     var iPrice = Number($(this).children("td:nth-child(3)").children().val());
-     //console.log("ID: "+sId+". Name: "+sName+". Price: "+sPrice+".");
-     aCompanies[counter].name = sName;
-     aCompanies[counter].id = iId;
-     aCompanies[counter].price = iPrice
-
-     counter++;
-     });*/
     updateLocal = JSON.stringify(aCompanies);
     localStorage.sCompanies = updateLocal;
 }
 
 
 
-/****************************************************/
 $("#btnAddCompany").click(function(){
     var sCompanyId = new Date().getTime();
     var sCompanyName = $("#txtCompanyName").val();
