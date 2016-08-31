@@ -43,7 +43,62 @@ $(document).on("click", "#modalUsersClose", function(){
     showUserList();
 });
 
+setInterval(function(){
+    if(aCompanies.length > 0){
+        updateCompanyStockPrice();
+    }
+}, 1000);
+
 // END OF EVENTS
+
+var aStockStatus = [];
+
+function updateCompanyStockPrice() {
+    var fCurrentStockPrice, fNewStockPrice, jStockStatus = {};
+    var fModifier = Math.random();
+    fModifier = Number(fModifier.toFixed(4));
+    aStockStatus = [];
+    //console.log(fModifier);
+
+    for(i = 0; i < aCompanies.length; i++){
+        fCurrentStockPrice = Number(aCompanies[i].price);
+        var fIndicator = Math.random();
+        jStockStatus = {};
+        if(fIndicator > 0.5){
+            fNewStockPrice = fCurrentStockPrice - fModifier;
+            //$('tr[data-companyId="'+aCompanies[i].id+'"]').children("td").children(".indicator");
+            jStockStatus.status = 0;
+            jStockStatus.id = aCompanies[i].id;
+            aStockStatus.push(jStockStatus);
+            //console.log($('tr[data-companyId="'+aCompanies[i].id+'"]'));
+        } else {
+            fNewStockPrice = fCurrentStockPrice + fModifier;
+            jStockStatus.status = 1;
+            jStockStatus.id = aCompanies[i].id;
+            aStockStatus.push(jStockStatus);
+        }
+        aCompanies[i].price = fNewStockPrice.toFixed(4);
+    }
+    showCompanyList();
+    updateStockIndicator();
+    updateLocal = JSON.stringify(aCompanies);
+    localStorage.sCompanies = updateLocal;
+}
+
+function updateStockIndicator(){
+    //console.log(aStockStatus);
+    for(i = 0; i < aStockStatus.length; i++){
+        console.log(aStockStatus[i]);
+        if(aStockStatus[i].status == 1){
+            //console.log("1");
+            $('tr[data-companyId="'+aStockStatus[i].id+'"]').children("td").children(".indicator").removeClass("fa-arrow-down").addClass("fa" +
+                " fa-arrow-up");
+        } else if(aStockStatus[i].status == 0){
+            //console.log("0");
+            $('tr[data-companyId="'+aStockStatus[i].id+'"]').children("td").children(".indicator").removeClass("fa-arrow-up").addClass("fa fa-arrow-down");
+        }
+    }
+}
 
 /*
 
@@ -54,7 +109,7 @@ Then:
 Gets the current price of each stock
 Saves it
 Ramndomly adds or subtracts generated number to price
-Based on if new number is higher or lower than older, 
+Based on if new number is higher or lower than older, set content of span to green/red
 
  */
 
@@ -77,8 +132,10 @@ if( localStorage.sUsers ){
 function showCompanyList(){
     $("#lblCompanies").empty();
     for( var i = 0; i < aCompanies.length; i++ ){
+        var fPrice = Number(aCompanies[i].price);
+        fPrice = fPrice.toFixed(4);
         // $("#lblCompanies").append( "<div>" + aCompanies[i].name + "</div>"   );
-        $("#lblCompanies").append('<tr><th scope="row">'+aCompanies[i].id+'</th><td>'+aCompanies[i].name+'</td><td>'+aCompanies[i].price+'</td></tr>');
+        $("#lblCompanies").append('<tr data-companyId="'+aCompanies[i].id+'"><th scope="row">'+aCompanies[i].id+'</th><td>'+aCompanies[i].name+'</td><td>'+fPrice+'<span class="indicator"></span></td></tr>');
     }
 }
 
