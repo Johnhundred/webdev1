@@ -112,7 +112,7 @@ function showEditableCompanyData(oElement){
         //console.log("ID: "+iId+". Name: "+sName+". Price: "+iPrice+".");
     });
 
-    $("#modalCompanies .modal-body #lblEditableCompaniesModal").append('<tr><td><input type="text" value="'+sName+'"></td><td><input type="text" value="'+iPrice+'"></td></tr>');
+    $("#modalCompanies .modal-body #lblEditableCompaniesModal").append('<tr><td><input type="text" value="'+sName+'"></td><td><input type="text" value="'+iPrice+'"></td>'+'<td><i data-iCompanyId="+aCompanies[i].iCompanyId+" class="fa fa-trash-o fa-fw"></i></td></tr>');
 }
 
 function submitEditableCompanyData(){
@@ -173,7 +173,7 @@ $("#btnAddCompany").click(function(){
     var sCompanyName = $("#txtCompanyName").val();
     var sCompanyPrice = $("#txtCompanyPrice").val();
 
-    $("#lblCompanies").append('<tr><th scope="row">'+sCompanyId+'</th><td>'+sCompanyName+'</td><td>'+sCompanyPrice+'</td></tr>');
+    $("#lblCompanies").append('<tr><th scope="row">'+sCompanyId+'</th><td>'+sCompanyName+'</td><td>'+sCompanyPrice+'</td>'+'<td><i data-iCompanyId="+aCompanies[i].iCompanyId+" class="fa fa-trash-o fa-fw"></i></td></tr>');
 
     var jCompany = {};
     jCompany.id = new Date().getTime();
