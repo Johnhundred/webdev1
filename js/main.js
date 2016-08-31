@@ -135,7 +135,7 @@ function showCompanyList(){
         var fPrice = Number(aCompanies[i].price);
         fPrice = fPrice.toFixed(4);
         // $("#lblCompanies").append( "<div>" + aCompanies[i].name + "</div>"   );
-        $("#lblCompanies").append('<tr data-companyId="'+aCompanies[i].id+'"><th scope="row">'+aCompanies[i].id+'</th><td>'+aCompanies[i].name+'</td><td>'+fPrice+'<span class="indicator"></span></td></tr>');
+        $("#lblCompanies").append('<tr data-companyId="'+aCompanies[i].id+'"><th scope="row">'+aCompanies[i].id+'</th><td>'+aCompanies[i].name+'</td><td><span class="indicator"></span>'+fPrice+'</td></tr>');
     }
 }
 
