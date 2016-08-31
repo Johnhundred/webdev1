@@ -27,6 +27,7 @@ $(document).on("click", "#submitEditableCompanyData", function(){
 
 $(document).on("click", "#modalCompaniesClose", function(){
     $("#modalCompanies").hide();
+    showCompanyList();
 });
 
 // END OF EVENTS
@@ -47,10 +48,15 @@ if( localStorage.sUsers ){
     aUsers = JSON.parse( sUsersFromLocalStorage );
 }
 
-for( var i = 0; i < aCompanies.length; i++ ){
-    // $("#lblCompanies").append( "<div>" + aCompanies[i].name + "</div>"   );
-    $("#lblCompanies").append('<tr><th scope="row">'+aCompanies[i].id+'</th><td>'+aCompanies[i].name+'</td><td>'+aCompanies[i].price+'</td></tr>');
+function showCompanyList(){
+    $("#lblCompanies").empty();
+    for( var i = 0; i < aCompanies.length; i++ ){
+        // $("#lblCompanies").append( "<div>" + aCompanies[i].name + "</div>"   );
+        $("#lblCompanies").append('<tr><th scope="row">'+aCompanies[i].id+'</th><td>'+aCompanies[i].name+'</td><td>'+aCompanies[i].price+'</td></tr>');
+    }
 }
+
+showCompanyList();
 
 for( var i = 0; i < aUsers.length; i++ ){
     // $("#lblCompanies").append( "<div>" + aCompanies[i].name + "</div>"   );
@@ -70,10 +76,10 @@ function showEditableData(oElement){
         //console.log($(this));
         aClickedData.push($(this));
         //console.log($(this).text());
-        //iId = Number($(this).children("th:nth-child(1)").text());
+        iId = Number($(this).children("th:nth-child(1)").text());
         sName = $(this).children("td:nth-child(2)").text();
         iPrice = Number($(this).children("td:nth-child(3)").text());
-        //console.log("ID: "+iId+". Name: "+sName+". Price: "+iPrice+".");
+        console.log("ID: "+iId+". Name: "+sName+". Price: "+iPrice+".");
     });
 
     $("#modalCompanies .modal-body #lblEditableCompaniesModal").append('<tr><td><input type="text" value="'+sName+'"></td><td><input type="text" value="'+iPrice+'"></td></tr>');
@@ -83,13 +89,12 @@ function submitEditableData(){
     for(var i = 0; i < aCompanies.length; i++){
         if(aCompanies[i].id == iId){
             $("#modalCompanies .modal-body #lblEditableCompaniesModal tr").each(function(){
-                iId = Number($(this).children().children().val());
-                sName = $(this).children("td:nth-child(2)").children().val();
-                iPrice = Number($(this).children("td:nth-child(3)").children().val());
-                //console.log("ID: "+sId+". Name: "+sName+". Price: "+sPrice+".");
+                sName = $(this).children("td:nth-child(1)").children().val();
+                iPrice = Number($(this).children("td:nth-child(2)").children().val());
+                console.log("Name: "+sName+". Price: "+iPrice+".");
                 aCompanies[i].name = sName;
                 //aCompanies[i].id = iId;
-                aCompanies[i].price = iPrice
+                aCompanies[i].price = iPrice;
             });
         }
     }
