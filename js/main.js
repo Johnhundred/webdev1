@@ -18,16 +18,29 @@ $(document).on("click", "#linkUsers", function(){
 });
 
 $(document).on("click", "#lblCompanies tr", function(){
-    showEditableData(this);
+    showEditableCompanyData(this);
 });
 
 $(document).on("click", "#submitEditableCompanyData", function(){
-    submitEditableData();
-})
+    submitEditableCompanyData();
+});
 
 $(document).on("click", "#modalCompaniesClose", function(){
     $("#modalCompanies").hide();
     showCompanyList();
+});
+
+$(document).on("click", "#lblUsers tr", function(){
+    showEditableUserData(this);
+});
+
+$(document).on("click", "#submitEditableUserData", function(){
+    submitEditableUserData();
+});
+
+$(document).on("click", "#modalUsersClose", function(){
+    $("#modalUsers").hide();
+    showUserList();
 });
 
 // END OF EVENTS
@@ -56,19 +69,23 @@ function showCompanyList(){
     }
 }
 
-showCompanyList();
-
-for( var i = 0; i < aUsers.length; i++ ){
-    // $("#lblCompanies").append( "<div>" + aCompanies[i].name + "</div>"   );
-    $("#lblUsers").append('<tr><th scope="row">'+aUsers[i].id+'</th><td>'+aUsers[i].name+'</td><td>'+aUsers[i].lastName+'</td></tr>');
+function showUserList(){
+    $("#lblUsers").empty();
+    for( var i = 0; i < aUsers.length; i++ ){
+        // $("#lblCompanies").append( "<div>" + aCompanies[i].name + "</div>"   );
+        $("#lblUsers").append('<tr><th scope="row">'+aUsers[i].id+'</th><td>'+aUsers[i].name+'</td><td>'+aUsers[i].lastName+'</td></tr>');
+    }
 }
+
+showCompanyList();
+showUserList();
 
 // Sweetalert - swal
 var iId = 0;
 var sName = "";
 var iPrice = 0;
 
-function showEditableData(oElement){
+function showEditableCompanyData(oElement){
     var aClickedData = [];
     $("#modalCompanies .modal-body #lblEditableCompaniesModal").empty();
     $("#modalCompanies").show();
@@ -79,19 +96,19 @@ function showEditableData(oElement){
         iId = Number($(this).children("th:nth-child(1)").text());
         sName = $(this).children("td:nth-child(2)").text();
         iPrice = Number($(this).children("td:nth-child(3)").text());
-        console.log("ID: "+iId+". Name: "+sName+". Price: "+iPrice+".");
+        //console.log("ID: "+iId+". Name: "+sName+". Price: "+iPrice+".");
     });
 
     $("#modalCompanies .modal-body #lblEditableCompaniesModal").append('<tr><td><input type="text" value="'+sName+'"></td><td><input type="text" value="'+iPrice+'"></td></tr>');
 }
 
-function submitEditableData(){
+function submitEditableCompanyData(){
     for(var i = 0; i < aCompanies.length; i++){
         if(aCompanies[i].id == iId){
             $("#modalCompanies .modal-body #lblEditableCompaniesModal tr").each(function(){
                 sName = $(this).children("td:nth-child(1)").children().val();
                 iPrice = Number($(this).children("td:nth-child(2)").children().val());
-                console.log("Name: "+sName+". Price: "+iPrice+".");
+                //console.log("Name: "+sName+". Price: "+iPrice+".");
                 aCompanies[i].name = sName;
                 //aCompanies[i].id = iId;
                 aCompanies[i].price = iPrice;
@@ -100,6 +117,40 @@ function submitEditableData(){
     }
     updateLocal = JSON.stringify(aCompanies);
     localStorage.sCompanies = updateLocal;
+}
+
+function showEditableUserData(oElement){
+    var aClickedData = [];
+    $("#modalUsers .modal-body #lblEditableUsersModal").empty();
+    $("#modalUsers").show();
+    var result = $(oElement).each(function(){
+        //console.log($(this));
+        aClickedData.push($(this));
+        //console.log($(this).text());
+        iId = Number($(this).children("th:nth-child(1)").text());
+        sName = $(this).children("td:nth-child(2)").text();
+        sLastName = $(this).children("td:nth-child(3)").text();
+        console.log("ID: "+iId+". Name: "+sName+". Last Name: "+sLastName+".");
+    });
+
+    $("#modalUsers .modal-body #lblEditableUsersModal").append('<tr><td><input type="text" value="'+sName+'"></td><td><input type="text" value="'+sLastName+'"></td></tr>');
+}
+
+function submitEditableUserData(){
+    for(var i = 0; i < aUsers.length; i++){
+        if(aUsers[i].id == iId){
+            $("#modalUsers .modal-body #lblEditableUsersModal tr").each(function(){
+                sName = $(this).children("td:nth-child(1)").children().val();
+                sLastName = $(this).children("td:nth-child(2)").children().val();
+                console.log("Name: "+sName+". Last Name: "+sLastName+".");
+                aUsers[i].name = sName;
+                //aCompanies[i].id = iId;
+                aUsers[i].lastName = sLastName;
+            });
+        }
+    }
+    updateLocal = JSON.stringify(aUsers);
+    localStorage.sUsers = updateLocal;
 }
 
 
