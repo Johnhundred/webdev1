@@ -88,7 +88,7 @@ function updateCompanyStockPrice() {
 function updateStockIndicator(){
     //console.log(aStockStatus);
     for(i = 0; i < aStockStatus.length; i++){
-        console.log(aStockStatus[i]);
+        //console.log(aStockStatus[i]);
         if(aStockStatus[i].status == 1){
             //console.log("1");
             $('tr[data-companyId="'+aStockStatus[i].id+'"]').children("td").children(".indicator").removeClass("fa-arrow-down").addClass("fa" +
