@@ -43,7 +43,33 @@ $(document).on("click", "#modalUsersClose", function(){
     showUserList();
 });
 
+setInterval(function(){
+    if(aCompanies.length > 0){
+        updateCompanyStockPrice();
+    }
+}, 1000);
+
 // END OF EVENTS
+
+function updateCompanyStockPrice() {
+    var fCurrentStockPrice, fNewStockPrice;
+    var fModifier = Math.random();
+    fModifier = Number(fModifier.toFixed(4));
+    console.log(fModifier);
+
+    for(i = 0; i < aCompanies.length; i++){
+        fCurrentStockPrice = Number(aCompanies[i].price);
+        if(Math.random() > 0.5){
+            fNewStockPrice = fCurrentStockPrice - fModifier;
+        } else {
+            fNewStockPrice = fCurrentStockPrice + fModifier;
+        }
+        aCompanies[i].price = fNewStockPrice.toFixed(4);
+    }
+    showCompanyList();
+    updateLocal = JSON.stringify(aCompanies);
+    localStorage.sCompanies = updateLocal;
+}
 
 /*
 
@@ -54,7 +80,7 @@ Then:
 Gets the current price of each stock
 Saves it
 Ramndomly adds or subtracts generated number to price
-Based on if new number is higher or lower than older, 
+Based on if new number is higher or lower than older, set content of span to green/red
 
  */
 
@@ -77,8 +103,10 @@ if( localStorage.sUsers ){
 function showCompanyList(){
     $("#lblCompanies").empty();
     for( var i = 0; i < aCompanies.length; i++ ){
+        var fPrice = Number(aCompanies[i].price);
+        fPrice = fPrice.toFixed(4);
         // $("#lblCompanies").append( "<div>" + aCompanies[i].name + "</div>"   );
-        $("#lblCompanies").append('<tr><th scope="row">'+aCompanies[i].id+'</th><td>'+aCompanies[i].name+'</td><td>'+aCompanies[i].price+'</td></tr>');
+        $("#lblCompanies").append('<tr><th scope="row">'+aCompanies[i].id+'</th><td>'+aCompanies[i].name+'</td><td>'+fPrice+'<span class="indicator"></span></td></tr>');
     }
 }
 
