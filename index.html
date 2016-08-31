@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>
+    	LOCAL STORAGE AND LAYOUT
+    </title>
+
+    <!-- Bootstrap -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="swal/sweetalert.css">
+
+    <style type="text/css">
+    #wdw-companies, #wdw-users {
+    	display: none;
+    }
+
+    </style>
+
+
+
+
+  </head>
+  <body>
+
+
+		<nav class="navbar navbar-inverse">
+		  <div class="container-fluid">
+		    <!-- Brand and toggle get grouped for better mobile display -->
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      <a class="navbar-brand" href="#">Brand</a>
+		    </div>
+
+		    <!-- Collect the nav links, forms, and other content for toggling -->
+		    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+		      <ul class="nav navbar-nav">
+		        <li class="active"><a id="linkCompanies" href="#">
+		        	COMPANIES
+		        <span class="sr-only">(current)</span></a></li>
+		        <li><a id="linkUsers" href="#">
+		        	USERS
+		        </a></li>
+		      
+		      </ul>
+		      
+		    </div><!-- /.navbar-collapse -->
+		  </div><!-- /.container-fluid -->
+		</nav>
+
+		<div class="container">
+
+			<div id="wdw-companies">
+		  	<input id="txtCompanyName" type="text" placeholder="company name">
+		  	<input id="txtCompanyPrice" type="text" placeholder="company price">
+		  	<button id="btnAddCompany">Add Company</button>
+		  	<input id="txtSearch" type="text" placeholder="search">
+		  	<!--<button id="btnModalCompanies" type="button" data-toggle="modal" data-target="#modalCompanies">Edit Data</button>-->
+
+				<div class="bs-example" data-example-id="hoverable-table"> 
+					<table class="table table-hover"> 
+						<thead> 
+							<tr> 
+								<th>#</th> 
+								<th>Company Name</th> 
+								<th>Stock Price</th> 
+							</tr> 
+						</thead> 
+
+						<tbody id="lblCompanies"> 
+
+						</tbody> 
+					</table> 
+				</div>
+			<!-- Modal -->
+				<div id="modalCompanies" class="modal" role="dialog">
+				  <div class="modal-dialog">
+
+				    <!-- Modal content-->
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <button type="button" class="close" data-dismiss="modal">&times;</button>
+				        <h4 class="modal-title">Modal Header</h4>
+				      </div>
+				      <div class="modal-body">
+				      	<div class="bs-example" data-example-id="hoverable-table"> 
+									<table class="table table-hover"> 
+										<thead> 
+											<tr> 
+												<th>#</th> 
+												<th>Name</th> 
+												<th>Last Name</th> 
+											</tr> 
+										</thead> 
+
+										<tbody id="lblEditableCompaniesModal"> 
+
+										</tbody> 
+									</table> 
+								</div>
+				      </div>
+				      <div class="modal-footer">
+				        <button id="submitEditableCompanyData" type="button" class="btn btn-default">Submit Changes</button>
+				        <button id="modalCompaniesClose" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				      </div>
+				    </div>
+
+				  </div>
+				</div>
+			</div>
+
+			<div id="wdw-users">
+		  	<input id="txtUserName" type="text" placeholder="name">
+		  	<input id="txtUserLastName" type="text" placeholder="last name">
+		  	<button id="btnAddUser">Add User</button>
+		  	<input id="txtSearchUsers" type="text" placeholder="search">
+
+				<div class="bs-example" data-example-id="hoverable-table"> 
+					<table class="table table-hover"> 
+						<thead> 
+							<tr> 
+								<th>#</th> 
+								<th>Name</th> 
+								<th>Last Name</th> 
+							</tr> 
+						</thead> 
+
+						<tbody id="lblUsers"> 
+
+						</tbody> 
+					</table> 
+				</div>
+			</div>
+
+		</div>
+
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+		<script src="swal/sweetalert.min.js"></script>
+
+
+
+
+
+		<script type="text/javascript">
+
+		/*var count = 0;
+
+		setTimeout(function(){
+			console.log("Skjærbæk");
+		},10000);
+
+		setInterval(function(){
+			if(count < 10){
+				console.log("Johannes");
+			}
+			count++;
+		},1000);*/
+
+		//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+		// Images: https://vegas.jaysalvat.com/
+
+			$(document).on("click", ".navbar-brand", function(){
+				// http://t4t5.github.io/sweetalert/
+				swal({   
+					title: "Error!",   
+					text: "Here's my error message!",   
+					type: "error",   
+					confirmButtonText: "Cool" 
+				});
+			});
+
+			$(document).on("click", "#linkCompanies", function(){
+				$("#wdw-companies").show();
+				$("#wdw-users").hide();
+			});
+
+			$(document).on("click", "#linkUsers", function(){
+				$("#wdw-companies").hide();
+				$("#wdw-users").show();
+			});
+
+			$(document).on("click", "#lblCompanies tr", function(){
+				showEditableData(this);
+			});
+
+			$(document).on("click", "#submitEditableCompanyData", function(){
+				submitEditableData();
+			})
+
+			$(document).on("click", "#modalCompaniesClose", function(){
+				$("#modalCompanies").hide();
+			});
+
+			// END OF EVENTS
+
+			// unique ID
+			// var iUniquieId = new Date().getTime();
+
+			var aCompanies = [];
+			var aUsers = [];
+
+			if( localStorage.sCompanies ){
+				var sCompaniesFromLocalStorage = localStorage.sCompanies;
+				aCompanies = JSON.parse( sCompaniesFromLocalStorage );
+			}
+
+			if( localStorage.sUsers ){
+				var sUsersFromLocalStorage = localStorage.sUsers;
+				aUsers = JSON.parse( sUsersFromLocalStorage );
+			}
+
+			for( var i = 0; i < aCompanies.length; i++ ){
+				// $("#lblCompanies").append( "<div>" + aCompanies[i].name + "</div>"   );
+				$("#lblCompanies").append('<tr><th scope="row">'+aCompanies[i].id+'</th><td>'+aCompanies[i].name+'</td><td>'+aCompanies[i].price+'</td></tr>');
+			}
+
+			for( var i = 0; i < aUsers.length; i++ ){
+				// $("#lblCompanies").append( "<div>" + aCompanies[i].name + "</div>"   );
+				$("#lblUsers").append('<tr><th scope="row">'+aUsers[i].id+'</th><td>'+aUsers[i].name+'</td><td>'+aUsers[i].lastName+'</td></tr>');
+			}
+			// Sweetalert - swal
+			var iId = 0;
+			var sName = "";
+			var iPrice = 0;
+
+			function showEditableData(oElement){
+				var aClickedData = [];
+				$("#modalCompanies .modal-body #lblEditableCompaniesModal").empty();
+				$("#modalCompanies").show();
+				var result = $(oElement).each(function(){
+					//console.log($(this));
+					aClickedData.push($(this));
+					//console.log($(this).text());
+					iId = Number($(this).children("th:nth-child(1)").text());
+					sName = $(this).children("td:nth-child(2)").text();
+					iPrice = Number($(this).children("td:nth-child(3)").text());
+					//console.log("ID: "+iId+". Name: "+sName+". Price: "+iPrice+".");
+				});
+
+				$("#modalCompanies .modal-body #lblEditableCompaniesModal").append('<tr><th scope="row"><input type="text" value="'+iId+'"></th><td><input type="text" value="'+sName+'"></td><td><input type="text" value="'+iPrice+'"></td></tr>');
+			}
+
+			function submitEditableData(){
+				for(var i = 0; i < aCompanies.length; i++){
+					if(aCompanies[i].id == iId){
+						$("#modalCompanies .modal-body #lblEditableCompaniesModal tr").each(function(){
+							iId = Number($(this).children().children().val());
+							sName = $(this).children("td:nth-child(2)").children().val();
+							iPrice = Number($(this).children("td:nth-child(3)").children().val());
+							//console.log("ID: "+sId+". Name: "+sName+". Price: "+sPrice+".");
+							aCompanies[i].name = sName;
+							aCompanies[i].id = iId;
+							aCompanies[i].price = iPrice
+						});
+					}
+				}
+				/*$("#modalCompanies .modal-body #lblEditableCompaniesModal tr").each(function(){
+					var iId = Number($(this).children().children().val());
+					var sName = $(this).children("td:nth-child(2)").children().val();
+					var iPrice = Number($(this).children("td:nth-child(3)").children().val());
+					//console.log("ID: "+sId+". Name: "+sName+". Price: "+sPrice+".");
+					aCompanies[counter].name = sName;
+					aCompanies[counter].id = iId;
+					aCompanies[counter].price = iPrice
+
+					counter++;
+				});*/
+				updateLocal = JSON.stringify(aCompanies);
+				localStorage.sCompanies = updateLocal;
+			}
+
+
+
+			/****************************************************/
+			$("#btnAddCompany").click(function(){
+				var sCompanyId = new Date().getTime();
+				var sCompanyName = $("#txtCompanyName").val();
+				var sCompanyPrice = $("#txtCompanyPrice").val();
+
+				$("#lblCompanies").append('<tr><th scope="row">'+sCompanyId+'</th><td>'+sCompanyName+'</td><td>'+sCompanyPrice+'</td></tr>');
+		
+				var jCompany = {};
+				jCompany.id = new Date().getTime();
+				jCompany.name = sCompanyName;
+				jCompany.price = sCompanyPrice;
+				aCompanies.push( jCompany );
+				console.log( aCompanies );
+				// Save to the localStorage
+				var sFinalCompanies = JSON.stringify( aCompanies );
+				// Save/update the sCompanies in localStorage
+				localStorage.sCompanies = sFinalCompanies;
+			});
+
+			$("#btnAddUser").click(function(){
+				var sUserId = new Date().getTime();
+				var sUserName = $("#txtUserName").val();
+				var sUserLastName = $("#txtUserLastName").val();
+
+				$("#lblUsers").append('<tr><th scope="row">'+sUserId+'</th><td>'+sUserName+'</td><td>'+sUserLastName+'</td></tr>');
+		
+				var jUser = {};
+				jUser.id = new Date().getTime();
+				jUser.name = sUserName;
+				jUser.lastName = sUserLastName;
+				aUsers.push( jUser );
+				console.log( aUsers );
+				// Save to the localStorage
+				var sFinalUsers = JSON.stringify( aUsers );
+				// Save/update the sCompanies in localStorage
+				localStorage.sUsers = sFinalUsers;
+			});
+
+			$("#txtSearch").keyup(function(){
+				// console.log("x");
+				var sSearchFor = $(this).val();
+				console.log(sSearchFor);
+
+				$( "#lblCompanies").children("tr").children("td:nth-of-type(1)").each(function(){
+					// console.log( $(this).text() ); // Mark, Jakob
+					var sCompareTo = $(this).text();
+					if(sSearchFor == sCompareTo){
+						$(this).parent().css("background-color","yellow");
+					}else{
+						$(this).parent().css("background-color","white");
+					}					
+				});
+			});
+
+			$("#txtSearchUsers").keyup(function(){
+				// console.log("x");
+				var sSearchFor = $(this).val();
+				console.log(sSearchFor);
+
+				$( "#lblUsers").children("tr").children("td:nth-of-type(1)").each(function(){
+					// console.log( $(this).text() ); // Mark, Jakob
+					var sCompareTo = $(this).text();
+					if(sSearchFor == sCompareTo){
+						$(this).parent().css("background-color","yellow");
+					}else{
+						$(this).parent().css("background-color","white");
+					}					
+				});
+			});
+
+			
+
+		</script>
+
+
+
+
+
+  </body>
+</html>
