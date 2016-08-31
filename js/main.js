@@ -146,7 +146,7 @@ function showEditableUserData(oElement){
         console.log("ID: "+iId+". Name: "+sName+". Last Name: "+sLastName+".");
     });
 
-    $("#modalUsers .modal-body #lblEditableUsersModal").append('<tr><td><input type="text" value="'+sName+'"></td><td><input type="text" value="'+sLastName+'"></td></tr>');
+    $("#modalUsers .modal-body #lblEditableUsersModal").append('<tr><td><input type="text" value="'+sName+'"></td><td><input type="text" value="'+sLastName+'"></td>'+'<td><i data-iCompanyId="+aCompanies[i].iCompanyId+" class="fa fa-trash-o fa-fw"></i></td></tr>');
 }
 
 function submitEditableUserData(){
@@ -173,7 +173,7 @@ $("#btnAddCompany").click(function(){
     var sCompanyName = $("#txtCompanyName").val();
     var sCompanyPrice = $("#txtCompanyPrice").val();
 
-    $("#lblCompanies").append('<tr><th scope="row">'+sCompanyId+'</th><td>'+sCompanyName+'</td><td>'+sCompanyPrice+'</td>'+'<td><i data-iCompanyId="+aCompanies[i].iCompanyId+" class="fa fa-trash-o fa-fw"></i></td></tr>');
+    $("#lblCompanies").append('<tr><th scope="row">'+sCompanyId+'</th><td>'+sCompanyName+'</td><td>'+sCompanyPrice+'</td></tr>');
 
     var jCompany = {};
     jCompany.id = new Date().getTime();
