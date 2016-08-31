@@ -112,7 +112,7 @@ function showEditableCompanyData(oElement){
         //console.log("ID: "+iId+". Name: "+sName+". Price: "+iPrice+".");
     });
 
-    $("#modalCompanies .modal-body #lblEditableCompaniesModal").append('<tr><td><input type="text" value="'+sName+'"></td><td><input type="text" value="'+iPrice+'"></td>'+'<td><i data-iCompanyId="+aCompanies[i].iCompanyId+" class="fa fa-trash-o fa-fw"></i></td></tr>');
+    $("#modalCompanies .modal-body #lblEditableCompaniesModal").append('<tr><td><input type="text" value="'+sName+'"></td><td><input type="text" value="'+iPrice+'"></td>'+'<td><i data-iCompanyId="'+iId+'" class="fa fa-trash-o fa-fw"></i></td></tr>');
 }
 
 function submitEditableCompanyData(){
@@ -125,7 +125,37 @@ function submitEditableCompanyData(){
                 aCompanies[i].name = sName;
                 //aCompanies[i].id = iId;
                 aCompanies[i].price = iPrice;
+
+                /*aCompanies[i].name = "CHANGED";
+
+                $(document).on("click", ".fa-trash-o", function(){
+
+                    localStorage.clear();
+
+                    /!*id = $(this).attr('data-iCompanyId');
+                    for(var i = 0; i < aCompanies.length; i++){
+                        if( id == aCompanies[i].iCompanyId ){
+                            $(this).parent().parent().empty();
+                            aCompanies.splice(i, 1);
+                        }
+                    }*!/
+                });*/
+
+
             });
+
+            /*$(document).on("click", ".fa-trash-o", function(){
+
+                id = $(this).attr('data-iCompanyId');
+                for(var i = 0; i < aCompanies.length; i++){
+                    if( id == aCompanies[i].iCompanyId ){
+                        $(this).parent().empty();
+                        aCompanies.splice(i, 1)
+                    }
+                }
+            });*/
+
+
         }
     }
     updateLocal = JSON.stringify(aCompanies);
