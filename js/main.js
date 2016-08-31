@@ -45,6 +45,19 @@ $(document).on("click", "#modalUsersClose", function(){
 
 // END OF EVENTS
 
+/*
+
+Set interval every 1 second
+Run function that:
+Generates random number
+Then:
+Gets the current price of each stock
+Saves it
+Ramndomly adds or subtracts generated number to price
+Based on if new number is higher or lower than older, 
+
+ */
+
 // unique ID
 // var iUniquieId = new Date().getTime();
 
