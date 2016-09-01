@@ -295,3 +295,40 @@ $("#txtSearchUsers").keyup(function(){
     });
 });
 
+$(document).on("click", "#lblCompanies tr td i.fa-trash-o", function (){
+    // console.log ("XXXX");
+
+    var nCompaniesId = $(this).attr("data-icompanyid");
+    // console.log (nCompaniesId);
+
+    for(var i = 0; i < aCompanies.length; i++){
+
+
+
+        if(aCompanies[i].id == nCompaniesId){
+            // console.log ("MATCH!");
+            $(this).parent().parent().empty();
+            aCompanies.splice(i, 1);
+        }
+    }
+
+
+});
+
+$(document).on("click", "#lblUsers tr td i.fa-trash-o", function (){
+    // console.log ("XXXX");
+
+    var nUsersId = $(this).attr("data-iUserId");
+    // console.log (nUsersId);
+
+    for(var i = 0; i < aUsers.length; i++){
+
+        if(aUsers[i].id == nUsersId){
+            // console.log ("MATCH!");
+            $(this).parent().parent().empty();
+            aUsers.splice(i, 1);
+        }
+    }
+});
+
+
