@@ -135,7 +135,7 @@ function showCompanyList(){
         var fPrice = Number(aCompanies[i].price);
         fPrice = fPrice.toFixed(4);
         // $("#lblCompanies").append( "<div>" + aCompanies[i].name + "</div>"   );
-        $("#lblCompanies").append('<tr data-companyId="'+aCompanies[i].id+'"><th scope="row">'+aCompanies[i].id+'</th><td>'+aCompanies[i].name+'</td><td><span class="indicator"></span>'+fPrice+'</td></tr>');
+        $("#lblCompanies").append('<tr data-companyId="'+aCompanies[i].id+'"><th scope="row">'+aCompanies[i].id+'</th><td>'+aCompanies[i].name+'</td><td><span class="indicator"></span>'+fPrice+'</td><td><i class="fa fa-pencil" aria-hidden="true"></i></td><td><i data-iCompanyId="'+iId+'" class="fa fa-trash-o fa-fw"></i></td></tr>');
     }
 }
 
@@ -169,7 +169,7 @@ function showEditableCompanyData(oElement){
         //console.log("ID: "+iId+". Name: "+sName+". Price: "+iPrice+".");
     });
 
-    $("#modalCompanies .modal-body #lblEditableCompaniesModal").append('<tr><td><input type="text" value="'+sName+'"></td><td><input type="text" value="'+iPrice+'"></td>'+'<td><i data-iCompanyId="+aCompanies[i].iCompanyId+" class="fa fa-trash-o fa-fw"></i></td></tr>');
+    $("#modalCompanies .modal-body #lblEditableCompaniesModal").append('<tr><td><input type="text" value="'+sName+'"></td><td><input type="text" value="'+iPrice+'"></td></tr>');
 }
 
 function submitEditableCompanyData(){
@@ -182,7 +182,12 @@ function submitEditableCompanyData(){
                 aCompanies[i].name = sName;
                 //aCompanies[i].id = iId;
                 aCompanies[i].price = iPrice;
+
             });
+
+
+
+
         }
     }
     updateLocal = JSON.stringify(aCompanies);
@@ -203,7 +208,7 @@ function showEditableUserData(oElement){
         console.log("ID: "+iId+". Name: "+sName+". Last Name: "+sLastName+".");
     });
 
-    $("#modalUsers .modal-body #lblEditableUsersModal").append('<tr><td><input type="text" value="'+sName+'"></td><td><input type="text" value="'+sLastName+'"></td></tr>');
+    $("#modalUsers .modal-body #lblEditableUsersModal").append('<tr><td><input type="text" value="'+sName+'"></td><td><input type="text" value="'+sLastName+'"></td>'+'<td><i data-iCompanyId="+aCompanies[i].iCompanyId+" class="fa fa-trash-o fa-fw"></i></td></tr>');
 }
 
 function submitEditableUserData(){
@@ -230,7 +235,7 @@ $("#btnAddCompany").click(function(){
     var sCompanyName = $("#txtCompanyName").val();
     var sCompanyPrice = $("#txtCompanyPrice").val();
 
-    $("#lblCompanies").append('<tr><th scope="row">'+sCompanyId+'</th><td>'+sCompanyName+'</td><td>'+sCompanyPrice+'</td>'+'<td><i data-iCompanyId="+aCompanies[i].iCompanyId+" class="fa fa-trash-o fa-fw"></i></td></tr>');
+    $("#lblCompanies").append('<tr><th scope="row">'+sCompanyId+'</th><td>'+sCompanyName+'</td><td>'+sCompanyPrice+'</td></tr>');
 
     var jCompany = {};
     jCompany.id = new Date().getTime();
