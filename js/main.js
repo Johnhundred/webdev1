@@ -116,8 +116,8 @@ Based on if new number is higher or lower than older, set content of span to gre
 // unique ID
 // var iUniquieId = new Date().getTime();
 
-var aCompanies = [];
-var aUsers = [];
+var aCompanies = [{"id":1472754122074,"name":"Facebook","price":"17.1246"},{"id":1472754128096,"name":"Google","price":"29.4402"},{"id":1472754150849,"name":"Apple","price":"6.5615"},{"id":1472754157168,"name":"Tesla","price":"37.6602"},{"id":1472754167960,"name":"Lego","price":"58.6546"},{"id":1472754177717,"name":"Maersk","price":"69.3994"},{"id":1472754187676,"name":"NovoNordisk","price":"60.0476"},{"id":1472754195286,"name":"HTML24","price":"5.0973"},{"id":1472754200648,"name":"KEA","price":"20.7947"},{"id":1472754216416,"name":"Stromworks","price":"7.0688"},{"id":1472754252419,"name":"Cynapsus","price":"39.9761"},{"id":1472754264973,"name":"Stellar Acquisition","price":"28.8707"},{"id":1472754275303,"name":"Aquinox","price":"37.3311"},{"id":1472754287929,"name":"Airgain","price":"37.4499"},{"id":1472754300340,"name":"Medpace Holding","price":"21.6657"},{"id":1472754329854,"name":"Oxford Industries","price":"15.9587"},{"id":1472754338221,"name":"Vera Bradley","price":"11.5909"},{"id":1472754352391,"name":"Sirius XM","price":"42.2261"},{"id":1472754374798,"name":"Credit Suisse","price":"71.4816"},{"id":1472754387270,"name":"Campbell","price":"25.1943"}];
+var aUsers = [{"id":1472754552962,"name":"John","lastName":"Johnson"},{"id":1472754561590,"name":"Johannes","lastName":"Otto"},{"id":1472754566649,"name":"Ralf","lastName":"Blaga"},{"id":1472754576683,"name":"Patrik","lastName":"Blaga"},{"id":1472754582916,"name":"Johannes","lastName":"Skjærbæk"},{"id":1472754592866,"name":"Nadia","lastName":"Nielsen"},{"id":1472754600298,"name":"Linn","lastName":"Nang"},{"id":1472754656545,"name":"Amelia","lastName":"P"},{"id":1472754664113,"name":"Anna","lastName":"Johansson"},{"id":1472754669196,"name":"Jens","lastName":"Jensen"},{"id":1472754675702,"name":"Hans","lastName":"Larsen"},{"id":1472754681391,"name":"Santiago","lastName":"Donoso"},{"id":1472754691071,"name":"Kevin","lastName":"Smith"},{"id":1472754711017,"name":"Lorenzo","lastName":"Medici"},{"id":1472754719269,"name":"Leonardo","lastName":"DaVinci"},{"id":1472754728805,"name":"Dave","lastName":"Rapoza"},{"id":1472754737093,"name":"Noah","lastName":"Bradley"}];
 
 if( localStorage.sCompanies ){
     var sCompaniesFromLocalStorage = localStorage.sCompanies;
@@ -182,12 +182,7 @@ function submitEditableCompanyData(){
                 aCompanies[i].name = sName;
                 //aCompanies[i].id = iId;
                 aCompanies[i].price = iPrice;
-
             });
-
-
-
-
         }
     }
     updateLocal = JSON.stringify(aCompanies);
@@ -235,7 +230,7 @@ $("#btnAddCompany").click(function(){
     var sCompanyName = $("#txtCompanyName").val();
     var sCompanyPrice = $("#txtCompanyPrice").val();
 
-    $("#lblCompanies").append('<tr><th scope="row">'+sCompanyId+'</th><td>'+sCompanyName+'</td><td>'+sCompanyPrice+'</td></tr>');
+    $("#lblCompanies").append('<tr data-companyId="'+sCompanyId+'"><th scope="row">'+sCompanyId+'</th><td>'+sCompanyName+'</td><td><span class="indicator fa"></span><span class="price">'+sCompanyPrice+'</span></td><td><i class="fa fa-pencil" aria-hidden="true"></i></td><td><i data-iCompanyId="'+sCompanyId+'" class="fa fa-trash-o fa-fw"></i></td></tr>');
 
     var jCompany = {};
     jCompany.id = new Date().getTime();
@@ -254,7 +249,7 @@ $("#btnAddUser").click(function(){
     var sUserName = $("#txtUserName").val();
     var sUserLastName = $("#txtUserLastName").val();
 
-    $("#lblUsers").append('<tr><th scope="row">'+sUserId+'</th><td>'+sUserName+'</td><td>'+sUserLastName+'</td></tr>');
+    $("#lblUsers").append('<tr><th scope="row">'+sUserId+'</th><td>'+sUserName+'</td><td>'+sUserLastName+'</td><td><i class="fa fa-pencil" aria-hidden="true"></i></td><td><i data-iUserId="'+sUserId+'" class="fa fa-trash-o fa-fw"></i></td></tr>');
 
     var jUser = {};
     jUser.id = new Date().getTime();
