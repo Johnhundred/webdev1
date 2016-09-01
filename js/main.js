@@ -30,7 +30,7 @@ $(document).on("click", "#modalCompaniesClose", function(){
     showCompanyList();
 });
 
-$(document).on("click", "#lblUsers tr", function(){
+$(document).on("click", "#lblUsers tr td i.fa-pencil", function(){
     showEditableUserData(this);
 });
 
@@ -135,7 +135,7 @@ function showCompanyList(){
         var fPrice = Number(aCompanies[i].price);
         fPrice = fPrice.toFixed(4);
         // $("#lblCompanies").append( "<div>" + aCompanies[i].name + "</div>"   );
-        $("#lblCompanies").append('<tr data-companyId="'+aCompanies[i].id+'"><th scope="row">'+aCompanies[i].id+'</th><td>'+aCompanies[i].name+'</td><td><span class="indicator"></span><span class="price">'+fPrice+'</span></td><td><i class="fa fa-pencil" aria-hidden="true"></i></td><td><i data-iCompanyId="'+iId+'" class="fa fa-trash-o fa-fw"></i></td></tr>');
+        $("#lblCompanies").append('<tr data-companyId="'+aCompanies[i].id+'"><th scope="row">'+aCompanies[i].id+'</th><td>'+aCompanies[i].name+'</td><td><span class="indicator"></span><span class="price">'+fPrice+'</span></td><td><i class="fa fa-pencil" aria-hidden="true"></i></td><td><i data-iCompanyId="'+aCompanies[i].id+'" class="fa fa-trash-o fa-fw"></i></td></tr>');
     }
 }
 
@@ -143,7 +143,7 @@ function showUserList(){
     $("#lblUsers").empty();
     for( var i = 0; i < aUsers.length; i++ ){
         // $("#lblCompanies").append( "<div>" + aCompanies[i].name + "</div>"   );
-        $("#lblUsers").append('<tr><th scope="row">'+aUsers[i].id+'</th><td>'+aUsers[i].name+'</td><td>'+aUsers[i].lastName+'</td></tr>');
+        $("#lblUsers").append('<tr><th scope="row">'+aUsers[i].id+'</th><td>'+aUsers[i].name+'</td><td>'+aUsers[i].lastName+'</td><td><i class="fa fa-pencil" aria-hidden="true"></i></td><td><i data-iUserId="'+aUsers[i].id+'" class="fa fa-trash-o fa-fw"></i></td></tr>');
     }
 }
 
@@ -198,7 +198,7 @@ function showEditableUserData(oElement){
     var aClickedData = [];
     $("#modalUsers .modal-body #lblEditableUsersModal").empty();
     $("#modalUsers").show();
-    var result = $(oElement).each(function(){
+    var result = $(oElement).parent().parent().each(function(){
         //console.log($(this));
         aClickedData.push($(this));
         //console.log($(this).text());
