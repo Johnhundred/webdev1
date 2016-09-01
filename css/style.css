@@ -6,7 +6,17 @@
 
 /* ------------------------------ Company Styling ------------------------------ */
 
+.fa {
+    margin-right: 1vw;
+}
 
+.fa-arrow-down {
+    color: red;
+}
+
+.fa-arrow-up {
+    color: green;
+}
 
 /* ------------------------------ Users Styling ------------------------------ */
 
