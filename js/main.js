@@ -69,17 +69,18 @@ function updateCompanyStockPrice() {
             //$('tr[data-companyId="'+aCompanies[i].id+'"]').children("td").children(".indicator");
             jStockStatus.status = 0;
             jStockStatus.id = aCompanies[i].id;
+            jStockStatus.price = aCompanies[i].price;
             aStockStatus.push(jStockStatus);
             //console.log($('tr[data-companyId="'+aCompanies[i].id+'"]'));
         } else {
             fNewStockPrice = fCurrentStockPrice + fModifier;
             jStockStatus.status = 1;
             jStockStatus.id = aCompanies[i].id;
+            jStockStatus.price = aCompanies[i].price;
             aStockStatus.push(jStockStatus);
         }
         aCompanies[i].price = fNewStockPrice.toFixed(4);
     }
-    showCompanyList();
     updateStockIndicator();
     updateLocal = JSON.stringify(aCompanies);
     localStorage.sCompanies = updateLocal;
@@ -91,11 +92,10 @@ function updateStockIndicator(){
         //console.log(aStockStatus[i]);
         if(aStockStatus[i].status == 1){
             //console.log("1");
-            $('tr[data-companyId="'+aStockStatus[i].id+'"]').children("td").children(".indicator").removeClass("fa-arrow-down").addClass("fa" +
-                " fa-arrow-up");
+            $('tr[data-companyId="'+aStockStatus[i].id+'"]').children("td").children(".indicator").removeClass("fa-arrow-down").addClass("fa" + " fa-arrow-up").parent().children(".price").text(aStockStatus[i].price);
         } else if(aStockStatus[i].status == 0){
             //console.log("0");
-            $('tr[data-companyId="'+aStockStatus[i].id+'"]').children("td").children(".indicator").removeClass("fa-arrow-up").addClass("fa fa-arrow-down");
+            $('tr[data-companyId="'+aStockStatus[i].id+'"]').children("td").children(".indicator").removeClass("fa-arrow-up").addClass("fa fa-arrow-down").parent().children(".price").text(aStockStatus[i].price);
         }
     }
 }
@@ -135,7 +135,7 @@ function showCompanyList(){
         var fPrice = Number(aCompanies[i].price);
         fPrice = fPrice.toFixed(4);
         // $("#lblCompanies").append( "<div>" + aCompanies[i].name + "</div>"   );
-        $("#lblCompanies").append('<tr data-companyId="'+aCompanies[i].id+'"><th scope="row">'+aCompanies[i].id+'</th><td>'+aCompanies[i].name+'</td><td><span class="indicator"></span>'+fPrice+'</td><td><i class="fa fa-pencil" aria-hidden="true"></i></td><td><i data-iCompanyId="'+iId+'" class="fa fa-trash-o fa-fw"></i></td></tr>');
+        $("#lblCompanies").append('<tr data-companyId="'+aCompanies[i].id+'"><th scope="row">'+aCompanies[i].id+'</th><td>'+aCompanies[i].name+'</td><td><span class="indicator"></span><span class="price">'+fPrice+'</span></td><td><i class="fa fa-pencil" aria-hidden="true"></i></td><td><i data-iCompanyId="'+iId+'" class="fa fa-trash-o fa-fw"></i></td></tr>');
     }
 }
 
