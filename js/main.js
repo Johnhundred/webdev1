@@ -17,7 +17,7 @@ $(document).on("click", "#linkUsers", function(){
     $("#wdw-users").show();
 });
 
-$(document).on("click", "#lblCompanies tr", function(){
+$(document).on("click", "#lblCompanies tr td i.fa-pencil", function(){
     showEditableCompanyData(this);
 });
 
@@ -159,7 +159,7 @@ function showEditableCompanyData(oElement){
     var aClickedData = [];
     $("#modalCompanies .modal-body #lblEditableCompaniesModal").empty();
     $("#modalCompanies").show();
-    var result = $(oElement).each(function(){
+    var result = $(oElement).parent().parent().each(function(){
         //console.log($(this));
         aClickedData.push($(this));
         //console.log($(this).text());
