@@ -1,11 +1,11 @@
-/*$(document).on("click", ".navbar-brand", function(){
+$(document).on("click", ".navbar-brand", function(){
     swal({
         title: "Error!",
         text: "Here's my error message!",
         type: "error",
         confirmButtonText: "Cool"
     });
-});*/
+});
 
 $(document).on("click", "#linkCompanies", function(){
     $("#wdw-companies").show();
@@ -25,9 +25,16 @@ $(document).on("click", "#submitEditableCompanyData", function(){
     submitEditableCompanyData();
 });
 
-$(document).on("click", "#modalCompaniesClose", function(){
+/*$(document).on("click", "#modalCompaniesClose", function(){
     $("#modalCompanies").hide();
     showCompanyList();
+});*/
+
+$(document).on("click", ".close", function(){
+    $("#modalCompanies").hide();
+    showCompanyList();
+    $("#modalUsers").hide();
+    showUserList();
 });
 
 $(document).on("click", "#lblUsers tr td i.fa-pencil", function(){
@@ -38,10 +45,12 @@ $(document).on("click", "#submitEditableUserData", function(){
     submitEditableUserData();
 });
 
+/*
 $(document).on("click", "#modalUsersClose", function(){
     $("#modalUsers").hide();
     showUserList();
 });
+*/
 
 setInterval(function(){
     if(aCompanies.length > 0){
@@ -297,38 +306,32 @@ $("#txtSearchUsers").keyup(function(){
 
 $(document).on("click", "#lblCompanies tr td i.fa-trash-o", function (){
     // console.log ("XXXX");
-
     var nCompaniesId = $(this).attr("data-icompanyid");
     // console.log (nCompaniesId);
-
     for(var i = 0; i < aCompanies.length; i++){
-
-
-
         if(aCompanies[i].id == nCompaniesId){
             // console.log ("MATCH!");
             $(this).parent().parent().empty();
             aCompanies.splice(i, 1);
         }
     }
-
-
+    updateLocal = JSON.stringify(aCompanies);
+    localStorage.sCompanies = updateLocal;
 });
 
 $(document).on("click", "#lblUsers tr td i.fa-trash-o", function (){
     // console.log ("XXXX");
-
     var nUsersId = $(this).attr("data-iUserId");
     // console.log (nUsersId);
-
     for(var i = 0; i < aUsers.length; i++){
-
         if(aUsers[i].id == nUsersId){
             // console.log ("MATCH!");
             $(this).parent().parent().empty();
             aUsers.splice(i, 1);
         }
     }
+    updateLocal = JSON.stringify(aUsers);
+    localStorage.sUsers = updateLocal;
 });
 
 
