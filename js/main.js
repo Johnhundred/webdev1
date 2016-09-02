@@ -1,5 +1,5 @@
 $(document).on("click", ".navbar-brand", function(){
-    swal("About", "Web Development project made by Johannes Otto Skjærbæk and Ralf Patrik Blaga.");
+    swal("About", "Stock Exchange Web Development project made by Johannes Otto Skjærbæk and Ralf Patrik Blaga.");
 });
 
 $(document).on("click", "#linkCompanies", function(){
