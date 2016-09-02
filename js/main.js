@@ -73,6 +73,8 @@ function getTotalCompanyStockValue(){
     //console.log(aTotalStockValues);
 }
 
+var iMaxGraphPoints = 51;
+
 google.charts.load('current', {packages: ['corechart', 'line']});
 google.charts.setOnLoadCallback(drawBasic);
 
@@ -89,6 +91,15 @@ function drawBasic() {
         aTempArray = [i, aTotalStockValues[i]];
         //console.log(aTemp);
         aData.push(aTempArray);
+    }
+
+    if(aData.length > iMaxGraphPoints){
+        aTotalStockValues.splice(0, 1);
+        aData.splice(0, 1);
+        for(i = 0; i < aData.length; i++){
+            aData[i][0] = aData[i][0] - 1;
+        }
+        //console.log(aData);
     }
 
     //console.log(aTest);
