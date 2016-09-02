@@ -4,6 +4,30 @@
     display: none;
 }
 
+.navbar {
+    border-radius: 0 !important;
+}
+
+input {
+    font-family: Arial, FontAwesome;
+}
+
+button {
+    border-radius: 0 !important;
+}
+
+th {
+    border-bottom: 0 !important;
+}
+
+.fa-pencil {
+    cursor: pointer;
+}
+
+.fa-trash-o {
+    cursor: pointer;
+}
+
 /* ------------------------------ Company Styling ------------------------------ */
 
 .fa {
@@ -20,3 +44,6 @@
 
 /* ------------------------------ Users Styling ------------------------------ */
 
+#txtSearchUsers {
+    float: right;
+}
