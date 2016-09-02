@@ -1,5 +1,12 @@
 /* ------------------------------ General & Setup Styling ------------------------------ */
 
+/* ----- FONTS ----- in case we want to use some ----------------- */
+
+/*font-family: 'Roboto', sans-serif;
+font-family: 'Raleway', sans-serif;
+font-family: 'Open Sans', sans-serif;*/
+
+
 #wdw-users {
     display: none;
 }
@@ -19,6 +26,8 @@ button {
 th {
     border-bottom: 0 !important;
 }
+
+
 
 .fa-pencil {
     cursor: pointer;

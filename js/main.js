@@ -203,7 +203,7 @@ function showEditableUserData(oElement){
         console.log("ID: "+iId+". Name: "+sName+". Last Name: "+sLastName+".");
     });
 
-    $("#modalUsers .modal-body #lblEditableUsersModal").append('<tr><td><input type="text" value="'+sName+'"></td><td><input type="text" value="'+sLastName+'"></td>'+'<td><i data-iCompanyId="+aCompanies[i].iCompanyId+" class="fa fa-trash-o fa-fw"></i></td></tr>');
+    $("#modalUsers .modal-body #lblEditableUsersModal").append('<tr><td><input type="text" value="'+sName+'"></td><td><input type="text" value="'+sLastName+'"></td></tr>');
 }
 
 function submitEditableUserData(){
