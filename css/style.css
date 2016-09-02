@@ -42,6 +42,11 @@ button {
 
 /* ------------------------------ Company Styling ------------------------------ */
 
+#btnAddCompany {
+    border: 1px solid grey;
+    background-color: white;
+}
+
 .fa {
     margin-right: 1vw;
 }
