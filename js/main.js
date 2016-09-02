@@ -57,7 +57,7 @@ setInterval(function(){
         getTotalCompanyStockValue();
         drawBasic();
     }
-}, 10000);
+}, 1000);
 
 // END OF EVENTS
 
