@@ -343,12 +343,12 @@ $("#btnAddUser").click(function(){
 
 $("#txtSearch").keyup(function(){
     // console.log("x");
-    var sSearchFor = $(this).val();
+    var sSearchFor = $(this).val().toLowerCase();
     console.log(sSearchFor);
 
     $( "#lblCompanies").children("tr").children("td:nth-of-type(1)").each(function(){
         // console.log( $(this).text() ); // Mark, Jakob
-        var sCompareTo = $(this).text();
+        var sCompareTo = $(this).text().toLowerCase();
         if(sSearchFor == sCompareTo){
             $(this).parent().css("background-color","yellow");
         }else{
@@ -359,12 +359,12 @@ $("#txtSearch").keyup(function(){
 
 $("#txtSearchUsers").keyup(function(){
     // console.log("x");
-    var sSearchFor = $(this).val();
+    var sSearchFor = $(this).val().toLowerCase();
     console.log(sSearchFor);
 
     $( "#lblUsers").children("tr").children("td:nth-of-type(1)").each(function(){
         // console.log( $(this).text() ); // Mark, Jakob
-        var sCompareTo = $(this).text();
+        var sCompareTo = $(this).text().toLowerCase();
         if(sSearchFor == sCompareTo){
             $(this).parent().css("background-color","yellow");
         }else{
