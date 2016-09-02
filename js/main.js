@@ -56,7 +56,7 @@ setInterval(function(){
     if(aCompanies.length > 0){
         updateCompanyStockPrice();
     }
-}, 1000);
+}, 10000);
 
 // END OF EVENTS
 
