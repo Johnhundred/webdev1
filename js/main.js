@@ -1,10 +1,5 @@
 $(document).on("click", ".navbar-brand", function(){
-    swal({
-        title: "Error!",
-        text: "Here's my error message!",
-        type: "error",
-        confirmButtonText: "Cool"
-    });
+    swal("About", "Web Development project made by Johannes Otto Skjærbæk and Ralf Patrik Blaga.");
 });
 
 $(document).on("click", "#linkCompanies", function(){
@@ -45,6 +40,10 @@ $(document).on("click", "#submitEditableUserData", function(){
     submitEditableUserData();
 });
 
+$(document).on("click", "ul.nav li a", function(){
+    updateNavbarHighlight(this);
+});
+
 /*
 $(document).on("click", "#modalUsersClose", function(){
     $("#modalUsers").hide();
@@ -59,6 +58,15 @@ setInterval(function(){
 }, 1000);
 
 // END OF EVENTS
+
+function updateNavbarHighlight(oElement){
+    //console.log(oElement);
+    $(oElement).parent().parent().children("li").each(function(){
+        //console.log(this);
+        $(this).removeClass("active");
+    })
+    $(oElement).parent().addClass("active");
+}
 
 var aStockStatus = [];
 
@@ -317,6 +325,7 @@ $(document).on("click", "#lblCompanies tr td i.fa-trash-o", function (){
     }
     updateLocal = JSON.stringify(aCompanies);
     localStorage.sCompanies = updateLocal;
+    showCompanyList();
 });
 
 $(document).on("click", "#lblUsers tr td i.fa-trash-o", function (){
@@ -332,6 +341,7 @@ $(document).on("click", "#lblUsers tr td i.fa-trash-o", function (){
     }
     updateLocal = JSON.stringify(aUsers);
     localStorage.sUsers = updateLocal;
+    showUserList();
 });
 
 
