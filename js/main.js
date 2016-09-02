@@ -73,7 +73,7 @@ function getTotalCompanyStockValue(){
     //console.log(aTotalStockValues);
 }
 
-var iMaxGraphPoints = 51;
+var iMaxGraphPoints = 61;
 
 google.charts.load('current', {packages: ['corechart', 'line']});
 google.charts.setOnLoadCallback(drawBasic);
@@ -108,7 +108,7 @@ function drawBasic() {
 
     var options = {
         hAxis: {
-            title: 'Time'
+            title: 'Time In Seconds'
         },
         vAxis: {
             title: 'Stock Market Value'
