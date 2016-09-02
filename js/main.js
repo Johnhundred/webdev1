@@ -374,35 +374,68 @@ $("#txtSearchUsers").keyup(function(){
 });
 
 $(document).on("click", "#lblCompanies tr td i.fa-trash-o", function (){
-    // console.log ("XXXX");
-    var nCompaniesId = $(this).attr("data-icompanyid");
-    // console.log (nCompaniesId);
-    for(var i = 0; i < aCompanies.length; i++){
-        if(aCompanies[i].id == nCompaniesId){
-            // console.log ("MATCH!");
-            $(this).parent().parent().empty();
-            aCompanies.splice(i, 1);
-        }
-    }
-    updateLocal = JSON.stringify(aCompanies);
-    localStorage.sCompanies = updateLocal;
-    showCompanyList();
+    var oElement = $(this);
+    swal({
+            title: "Are you sure?",
+            text: "You will not be able to recover this company!",
+            type: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#DD6B55",
+            confirmButtonText: "Yes, delete it!",
+            closeOnConfirm: false
+        },
+        function(){
+            deleteCompany(oElement);
+            swal("Deleted!", "The company has been deleted.", "success");
+        });
 });
 
+
 $(document).on("click", "#lblUsers tr td i.fa-trash-o", function (){
-    // console.log ("XXXX");
-    var nUsersId = $(this).attr("data-iUserId");
-    // console.log (nUsersId);
+    var oElement = $(this);
+    swal({
+        title: "Are you sure?",
+        text: "You will not be able to recover this user!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes, delete it!",
+        closeOnConfirm: false
+    },
+        function(){
+            deleteUser(oElement);
+            swal("Deleted!", "The user has been deleted.", "success");
+        });
+});
+
+function deleteUser(oElement){
+    //console.log (oElement);
+    var nUsersId = $(oElement).attr("data-iUserId");
+    //console.log (nUsersId);
     for(var i = 0; i < aUsers.length; i++){
         if(aUsers[i].id == nUsersId){
             // console.log ("MATCH!");
-            $(this).parent().parent().empty();
+            $(oElement).parent().parent().empty();
             aUsers.splice(i, 1);
         }
     }
     updateLocal = JSON.stringify(aUsers);
     localStorage.sUsers = updateLocal;
     showUserList();
-});
+}
 
-
+function deleteCompany(oElement){
+    // console.log ("XXXX");
+    var nCompaniesId = $(oElement).attr("data-icompanyid");
+    // console.log (nCompaniesId);
+    for(var i = 0; i < aCompanies.length; i++){
+        if(aCompanies[i].id == nCompaniesId){
+            // console.log ("MATCH!");
+            $(oElement).parent().parent().empty();
+            aCompanies.splice(i, 1);
+        }
+    }
+    updateLocal = JSON.stringify(aCompanies);
+    localStorage.sCompanies = updateLocal;
+    showCompanyList();
+}
