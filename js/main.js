@@ -82,7 +82,7 @@ function drawBasic() {
 
     var data = new google.visualization.DataTable();
     data.addColumn('number', 'X');
-    data.addColumn('number', 'Value');
+    data.addColumn('number', 'Stock Market Value');
 
     var aTempArray = [];
     var aData = [];
@@ -111,7 +111,7 @@ function drawBasic() {
             title: 'Time'
         },
         vAxis: {
-            title: 'Value'
+            title: 'Stock Market Value'
         }
     };
 
