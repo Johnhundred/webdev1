@@ -43,8 +43,15 @@ button {
 /* ------------------------------ Company Styling ------------------------------ */
 
 #btnAddCompany {
-    border: 1px solid grey;
-    background-color: white;
+    color: #ffffff;
+    background-color: #337ab7;
+    border: 1px solid black;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+#txtSearch {
+    float: right;
 }
 
 .fa {
@@ -59,12 +66,20 @@ button {
     color: green;
 }
 
-#txtSearch {
-    float: right;
+#chart_div {
+    margin-bottom: 2vh;
 }
 
 /* ------------------------------ Users Styling ------------------------------ */
 
 #txtSearchUsers {
     float: right;
+}
+
+#btnAddUser {
+    color: #ffffff;
+    background-color: #337ab7;
+    border: 1px solid black;
+    padding-top: 2px;
+    padding-bottom: 2px;
 }

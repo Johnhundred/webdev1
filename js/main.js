@@ -1,5 +1,5 @@
 $(document).on("click", ".navbar-brand", function(){
-    swal("About", "Web Development project made by Johannes Otto Skjærbæk and Ralf Patrik Blaga.");
+    swal("About", "Stock Exchange Web Development project made by Johannes Otto Skjærbæk and Ralf Patrik Blaga.");
 });
 
 $(document).on("click", "#linkCompanies", function(){
@@ -54,10 +54,71 @@ $(document).on("click", "#modalUsersClose", function(){
 setInterval(function(){
     if(aCompanies.length > 0){
         updateCompanyStockPrice();
+        getTotalCompanyStockValue();
+        drawBasic();
     }
 }, 10000);
 
 // END OF EVENTS
+
+var aTotalStockValues = [];
+
+function getTotalCompanyStockValue(){
+    var fTempStockValues = 0;
+    for(i = 0; i < aCompanies.length; i++){
+        fTempStockValues += Number(aCompanies[i].price);
+    }
+    fTempStockValues = Number(fTempStockValues.toFixed(4));
+    aTotalStockValues.push(fTempStockValues);
+    //console.log(aTotalStockValues);
+}
+
+var iMaxGraphPoints = 51;
+
+google.charts.load('current', {packages: ['corechart', 'line']});
+google.charts.setOnLoadCallback(drawBasic);
+
+function drawBasic() {
+
+    var data = new google.visualization.DataTable();
+    data.addColumn('number', 'X');
+    data.addColumn('number', 'Stock Market Value');
+
+    var aTempArray = [];
+    var aData = [];
+    for(var i = 0; i < aTotalStockValues.length; i++){
+        //console.log("x");
+        aTempArray = [i, aTotalStockValues[i]];
+        //console.log(aTemp);
+        aData.push(aTempArray);
+    }
+
+    if(aData.length > iMaxGraphPoints){
+        aTotalStockValues.splice(0, 1);
+        aData.splice(0, 1);
+        for(i = 0; i < aData.length; i++){
+            aData[i][0] = aData[i][0] - 1;
+        }
+        //console.log(aData);
+    }
+
+    //console.log(aTest);
+
+    data.addRows(aData);
+
+    var options = {
+        hAxis: {
+            title: 'Time'
+        },
+        vAxis: {
+            title: 'Stock Market Value'
+        }
+    };
+
+    var chart = new google.visualization.LineChart(document.getElementById('chart_div'));
+
+    chart.draw(data, options);
+}
 
 function updateNavbarHighlight(oElement){
     //console.log(oElement);
