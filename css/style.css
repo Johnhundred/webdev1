@@ -42,6 +42,18 @@ button {
 
 /* ------------------------------ Company Styling ------------------------------ */
 
+#btnAddCompany {
+    color: #ffffff;
+    background-color: #337ab7;
+    border: 1px solid black;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+#txtSearch {
+    float: right;
+}
+
 .fa {
     margin-right: 1vw;
 }
@@ -62,4 +74,12 @@ button {
 
 #txtSearchUsers {
     float: right;
+}
+
+#btnAddUser {
+    color: #ffffff;
+    background-color: #337ab7;
+    border: 1px solid black;
+    padding-top: 2px;
+    padding-bottom: 2px;
 }
